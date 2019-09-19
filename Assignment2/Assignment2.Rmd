@@ -1,10 +1,19 @@
+---
+title: "Assignment2"
+author: "Chanukya"
+date: "9/19/2019"
+output: html_document
+---
 
+
+```{r}
+##1
 
 library(fpp2)
-View(visnights)
+#View(visnights)
 autoplot(visnights[,"QLDMetro"])
 x <- ts(visnights[,"QLDMetro"],start = 1998, frequency=4) 
-x
+
 
 
 #1a)
@@ -22,26 +31,23 @@ fc3 <- snaive(train3, h = 12)
 autoplot(fc3)
 
 #1c)
-train1 <- window(x,end=c(2016,1))
 test1 <- window(x,start=c(2016,1), end= c(2016,4))
 fc1$mean
 accuracy(test1,fc1$mean)
-accuracy(train1,train)
-
 test2 <- window(x,start=c(2015,1), end= c(2016,4))
 accuracy(test2,fc2$mean)
-test1 <- window(x,start=c(2014,1), end= c(2016,4))
+test3 <- window(x,start=c(2014,1), end= c(2016,4))
 accuracy(test3,fc3$mean)
 
-
-
 #1d)
-# MAPE increses for test3 so increase in test set leading to increase in RMSE and MAPE 
+# MAPE increses for test3, so increase in test set leading to increase in RMSE and MAPE 
+
+```
 
 
 
-
-
+```{r}
+##2
 
 #2a)
 #View(dowjones)
@@ -75,7 +81,13 @@ sum(naive1$residuals[2:length(naive1$residuals)])
 sum(rwf1$residuals[2:length(rwf1$residuals)])
 #drift performs the best among all forecasting methods as we are getting least error.
 
+```
 
+
+
+
+
+```{r}
 #3a)
 #a)
 autoplot(ibmclose)
@@ -115,8 +127,9 @@ ggAcf(naive2$residuals)
 ggAcf(rwf2$residuals)
 # All did perform equally
 
+```
 
-#4)
+```{r}
 autoplot(hsales)
 
 
@@ -145,3 +158,5 @@ accuracy(test,rwf3$mean)
 ggAcf(snaive3$residuals)
 
 # Seasonal naive doesnot depict the white noise
+
+```
